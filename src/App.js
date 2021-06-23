@@ -64,18 +64,23 @@ function App() {
   
 
   return (
-   <div className = "bg-info text-white" id = "drum-machine">
+   <div id = "drum-machine">
 <div id = "display" className  = "text-center">
-  <h1>Drum Machine</h1>
+  <h1 className = "title">Drum Machine</h1>
+  <div className = "container">
+  <div className = "grid">
 {bankOne.map((clip) => (
   <Pad clip = {clip} key = {clip.id} volume={volume} />
 )
 )}
+</div>
+</div>
 <br />
-<h4>Volume</h4>
-<input type = "range" step = "0.01" max="1" 
+<h4 class = "volume">Volume</h4>
+<div className = "container pb-4">
+<input className = "col-md-6" type = "range" step = "0.01" max="1" 
 min = "0" value = {volume} className ="w-50" onChange = {(e) => setVolume(e.target.value)}/>
-
+</div>
 </div>
 
 </div>
@@ -98,6 +103,7 @@ return () => {
   const handleKeyPress = (e) => {
     if (e.keyCode === clip.keyCode) {
       playSound()
+      
     }
   }
 
@@ -116,10 +122,13 @@ return () => {
   }
 
   return (
+    
     <div className = {`btn btn-primary ${active && "btn-warning"} drum-pad`} onClick = {playSound}>
       <audio className = "clip" id = {clip.keyTrigger} src = {clip.url} />
       {clip.keyTrigger}
-    </div>
+    
+  
+  </div>
   )
 }
 
